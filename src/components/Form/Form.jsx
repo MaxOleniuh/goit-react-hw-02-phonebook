@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { PropTypes } from 'prop-types';
+import  PropTypes  from 'prop-types';
 import {FormStyled, ButtonStyled, LabelStyled, InputStyled } from './Form.styled';
 class Form extends Component {
   state = {

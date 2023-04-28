@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import  PropTypes from 'prop-types';
 import { UlStyled, ButtonStyled, LiStyled} from './List.styled';
 const List = ({ contacts, handleDelete }) => {
     return (

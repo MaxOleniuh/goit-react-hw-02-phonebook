@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import  PropTypes from 'prop-types';
 import { LabelStyled, InputStyled } from './Filter.styled';
 const Filter = ({ onChange }) => {
     return (
