@@ -1,32 +1,28 @@
 import { PropTypes } from 'prop-types';
 import { Component } from 'react';
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
 class Form extends Component {
-  // handleChange = e => {
-  // this.setState({ name: e.target.value });
-  // };
   state = {
     name: '',
     number: '',
   };
+
   handleChangeContact = e => {
     this.setState({ name: e.currentTarget.value });
   };
   handleChangeNumber = e => {
     this.setState({ number: e.currentTarget.value });
   };
-    handleSubmit = e => {
-        e.preventDefault();
-        const contact = {
+  handleSubmit = e => {
+    e.preventDefault();
+    const contact = {
       id: nanoid(),
       name: this.state.name,
       number: this.state.number,
     };
-    const form = e.currentTarget;
-    this.props.addContact(contact);
-    console.log(this.state.name);
-    console.log(this.state.number);
-    form.reset();
+      const form = e.currentTarget;
+      this.props.addContact(contact);
+      form.reset();
   };
   render() {
     return (

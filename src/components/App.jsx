@@ -5,28 +5,52 @@ import Filter from './Filter/Filter';
 export class App extends Component {
   state = {
     contacts: [
-    // {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    // {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    // {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    // {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ],
-  filter: '',
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+    name: '',
   };
-  addContact = (contact) => {
-    this.setState((prevState) => ({ contacts: [...prevState.contacts, contact] }));
+
+  addContact = contact => {
+    const nameExists = this.state.contacts.some(c => c.name === contact.name);
+    if (nameExists) {
+      alert(` ${contact.name} is already in your contacts.`);
+      return;
+    }
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }));
   };
-  changeFilter = e => {
-    this.setState({filter: e.currentTarget.value})
+
+  changeFilter = value => {
+    this.setState({ filter: value });
+  };
+  
+  handleDelete = id => {
+    const indEl = this.state.contacts.findIndex(el => el.id === id);
+    this.setState(({ contacts }) => ({ contacts: [...contacts.slice(0, indEl), ...contacts.slice(indEl + 1, contacts.length)] }));
   }
+  
   render() {
-    console.log(this.state.filter)
+    const filteredContacts = this.state.contacts.filter(contact => {
+      return contact.name
+        .toLowerCase()
+        .includes(this.state.filter.toLowerCase());
+    });
+
     return (
       <>
         <h2>Phonebook</h2>
-        <Form addContact={this.addContact} />
+        <Form
+          addContact={this.addContact}
+          preventAdditon={this.preventAdditon}
+        />
         <h3>Contacts</h3>
         <Filter onChange={this.changeFilter} />
-        <List contacts={this.state.contacts} />
+        <List contacts={filteredContacts} handleDelete={this.handleDelete} />
       </>
     );
   }
