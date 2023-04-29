@@ -1,7 +1,12 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import  PropTypes  from 'prop-types';
-import {FormStyled, ButtonStyled, LabelStyled, InputStyled } from './Form.styled';
+import PropTypes from 'prop-types';
+import {
+  FormStyled,
+  ButtonStyled,
+  LabelStyled,
+  InputStyled,
+} from './Form.styled';
 class Form extends Component {
   state = {
     name: '',
@@ -21,9 +26,9 @@ class Form extends Component {
       name: this.state.name,
       number: this.state.number,
     };
-      const form = e.currentTarget;
-      this.props.addContact(contact);
-      form.reset();
+    const form = e.currentTarget;
+    this.props.addContact(contact);
+    form.reset();
   };
   render() {
     return (
@@ -55,7 +60,8 @@ class Form extends Component {
     );
   }
 }
+
 Form.propTypes = {
   addContact: PropTypes.func.isRequired,
-}
+};
 export default Form;
