@@ -30,8 +30,9 @@ export class App extends Component {
   };
 
   handleDelete = id => {
-    const indEl = this.state.contacts.findIndex(el => el.id === id);
-    this.setState(({ contacts }) => ({ contacts: [...contacts.slice(0, indEl), ...contacts.slice(indEl + 1, contacts.length)] }));
+    this.setState(prevState => ({
+    contacts: prevState.contacts.filter(contact => contact.id !== id)
+  }));
   }
   filteredContacts() {
     return this.state.contacts.filter(contact => {
