@@ -33,14 +33,14 @@ export class App extends Component {
     const indEl = this.state.contacts.findIndex(el => el.id === id);
     this.setState(({ contacts }) => ({ contacts: [...contacts.slice(0, indEl), ...contacts.slice(indEl + 1, contacts.length)] }));
   }
-  
-  render() {
-    const filteredContacts = this.state.contacts.filter(contact => {
+  filteredContacts() {
+    return this.state.contacts.filter(contact => {
       return contact.name
         .toLowerCase()
         .includes(this.state.filter.toLowerCase());
-    });
-
+    })
+  };
+  render() {
     return (
       <>
         <h2>Phonebook</h2>
@@ -50,7 +50,7 @@ export class App extends Component {
         />
         <h3>Contacts</h3>
         <Filter onChange={this.changeFilter} />
-        <List contacts={filteredContacts} handleDelete={this.handleDelete} />
+        <List contacts={this.filteredContacts()} handleDelete={this.handleDelete} />
       </>
     );
   }
