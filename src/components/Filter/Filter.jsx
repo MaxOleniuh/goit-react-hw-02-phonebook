@@ -7,7 +7,7 @@ const Filter = ({ onChange }) => {
       Find contacts by name
       <InputStyled
         type="text"
-        onChange={onChange}
+        onChange={e => onChange(e.currentTarget.value)}
       />
     </LabelStyled>
   );
