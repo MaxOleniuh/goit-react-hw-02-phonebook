@@ -12,13 +12,16 @@ class Form extends Component {
     name: '',
     number: '',
   };
-
-  handleChangeContact = e => {
-    this.setState({ name: e.currentTarget.value });
-  };
-  handleChangeNumber = e => {
-    this.setState({ number: e.currentTarget.value });
-  };
+  handleChange =  e => {
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value })
+  }
+  // handleChangeContact = e => {
+  //   this.setState({ name: e.currentTarget.value });
+  // };
+  // handleChangeNumber = e => {
+  //   this.setState({ number: e.currentTarget.value });
+  // };
   handleSubmit = e => {
     e.preventDefault();
     const contact = {
@@ -29,6 +32,7 @@ class Form extends Component {
     const form = e.currentTarget;
     this.props.addContact(contact);
     form.reset();
+        console.log(e.target.parentElement)
   };
   render() {
     return (
@@ -36,7 +40,7 @@ class Form extends Component {
         <LabelStyled>
           <span>Name</span>
           <InputStyled
-            onChange={this.handleChangeContact}
+            onChange={this.handleChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -47,7 +51,7 @@ class Form extends Component {
         <LabelStyled>
           <span>Number</span>
           <InputStyled
-            onChange={this.handleChangeNumber}
+            onChange={this.handleChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
