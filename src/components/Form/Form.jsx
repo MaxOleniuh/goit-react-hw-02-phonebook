@@ -16,24 +16,13 @@ class Form extends Component {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value })
   }
-  // handleChangeContact = e => {
-  //   this.setState({ name: e.currentTarget.value });
-  // };
-  // handleChangeNumber = e => {
-  //   this.setState({ number: e.currentTarget.value });
-  // };
-  handleSubmit = e => {
-    e.preventDefault();
-    const contact = {
-      id: nanoid(),
-      name: this.state.name,
-      number: this.state.number,
-    };
-    const form = e.currentTarget;
-    this.props.addContact(contact);
-    form.reset();
-        console.log(e.target.parentElement)
-  };
+  
+handleSubmit = e => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  this.props.addContact(this.state.name, this.state.number);
+  form.reset();
+};
   render() {
     return (
       <FormStyled onSubmit={this.handleSubmit}>
